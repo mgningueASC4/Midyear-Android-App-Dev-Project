@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AP CS Quiz</string>
+    <string name="practice_tests">Practice Tests</string>
+    <string name="loves_me">Loves me</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
