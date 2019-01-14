@@ -1,4 +1,4 @@
-package com.example.imtia.apcsquiz
+/*package com.example.imtia.apcsquiz
 
 import android.content.Context
 import android.content.Intent
@@ -127,3 +127,4 @@ class QFragment : Fragment() {
                 }*/
     }
 }
+*/
