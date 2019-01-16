@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:text="Zero to Hero In CS"
+        android:textColor="#000"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:fontFamily="monospace" />
+
+    <LinearLayout
+        android:id="@+id/buttonsPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <Button
+            android:id="@+id/TestButton"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:text="PRACTICE TEST" />
+
+        <ScrollView
+            android:id="@+id/buttonScrollView"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/TestButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                >
+
+                <Button
+                    android:id="@+id/ab_expressions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Algorithm and Boolean"
+                    android:onClick="menuBtnAction"
+                    />
+
+                <Button
+                    android:id="@+id/loops"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Loops"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/array1D"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1D Array"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/array2D"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2D Array"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/array_linked_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Arraylist and Linked List"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/iterators"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Iterators"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/strings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Strings"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/class_interface_inheritance_polymorphism"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Classes, Interfaces, Inheritance, Polymorphism"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/fields_methods_prameter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fields, Methods and Parameter Passing"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/recursion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Recursion"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/algorithms_and_big_o"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Algorithms and Big O"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/comparable_and_comparator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Comparable and Comparator"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/binary_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Binary Search"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/sorting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sorting"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/listNode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Linked List Using List Node"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/stacks_and_ques"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Stacks and Ques"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/seta_and_maps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sets and Maps"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/treeNode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Trees using TreeNode"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/heaps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Heaps"
+                    android:onClick="menuBtnAction"
+                    />
+                <Button
+                    android:id="@+id/puzzles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Puzzles"
+                    android:onClick="menuBtnAction"
+                    />
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+</RelativeLayout>
