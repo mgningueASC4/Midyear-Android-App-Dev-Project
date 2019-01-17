@@ -23,6 +23,7 @@ class Main2Activity : AppCompatActivity(), questionsFrag.OnFragmentInteractionLi
     }
 
     fun init(){
+        //replace fragments in container
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.questionFragment, questionFragment)
