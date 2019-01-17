@@ -112,7 +112,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VE
         Log.d(TAG, "Querying the database for the questions")
         var questionList: ArrayList<QuestionObject> = ArrayList<QuestionObject>()
         val db = this.readableDatabase
-        val selectAllQuery = "SELECT * FROM $TABLE_NAME"
+        val selectAllQuery = "SELECT * FROM " + TABLE_NAME
         val cursor = db.rawQuery(selectAllQuery, null)
         if (cursor != null){
             if(cursor.moveToFirst()){
@@ -130,7 +130,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VE
                     question.answerC = cursor.getString(cursor.getColumnIndex(COL_ANSWER_C))
                     question.answerD = cursor.getString(cursor.getColumnIndex(COL_ANSWER_D))
                     question.answerE = cursor.getString(cursor.getColumnIndex(COL_ANSWER_E))
-                    Log.d(TAG, "Question added: $question.year, ")
+                    Log.d(TAG, "Question added: year - " + question.Year + " number - " + question.qn)
                     questionList.add(question)
                 }while(cursor.moveToNext())
             }

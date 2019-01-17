@@ -28,13 +28,20 @@ class questionsFrag : Fragment(){
     lateinit var t4: TextView
     lateinit var t5: TextView
     lateinit var btn: ImageView
+    lateinit var questionImage: ImageView
+
     var mContext = this.activity
 
+    //arrays of buttons and questions
     var ar:ArrayList<TextView> = ArrayList<TextView>()
     var questions:ArrayList<QuestionObject> = ArrayList<QuestionObject>()
 
+    //database handling
     lateinit var dbHelper: DBHelper
     private var listener: OnFragmentInteractionListener? = null
+
+    //topic of questions
+    private lateinit var topic: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,32 +51,38 @@ class questionsFrag : Fragment(){
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
             val v:View = inflater.inflate(R.layout.fragment_q, container, false)
             //implement widgetes
-            t1 = v.findViewById<TextView>(R.id.textView4)
-            t2 = v.findViewById<TextView>(R.id.textView8)
-            t3 = v.findViewById<TextView>(R.id.textView9)
-            t4 = v.findViewById<TextView>(R.id.textView10)
-            t5 = v.findViewById<TextView>(R.id.textView)
-
-            ar.add(0, t1)
-            ar.add(1, t2)
-            ar.add(2, t3)
-            ar.add(3, t4)
-            ar.add(4,t5)
-
-            btn = v.findViewById(R.id.gifImageView) as ImageView
-
+            initButtons(v)
             //create database
             dbHelper = DBHelper(v.context)
             questions = dbHelper.getAllQuestions()
             //inflate layout
             inflater.inflate(R.layout.fragment_q, container, false)
+            //retrieve topic
+            topic = arguments!!.getString("TOPIC")
             //start actions
-            initButtons()
+            btnFunction()
             return v
     }
 
     //method to initialize answer buttons
-    fun initButtons(){
+    fun initButtons(v:View){
+        t1 = v.findViewById<TextView>(R.id.textView4)
+        t2 = v.findViewById<TextView>(R.id.textView8)
+        t3 = v.findViewById<TextView>(R.id.textView9)
+        t4 = v.findViewById<TextView>(R.id.textView10)
+        t5 = v.findViewById<TextView>(R.id.textView)
+
+        ar.add(0, t1)
+        ar.add(1, t2)
+        ar.add(2, t3)
+        ar.add(3, t4)
+        ar.add(4,t5)
+
+        btn = v.findViewById(R.id.gifImageView) as ImageView
+        questionImage = v.findViewById(R.id.questionImageView) as ImageView
+    }
+    //add function to answer buttons
+    fun btnFunction(){
         t1.setOnClickListener {
             t1.setBackgroundColor(Color.rgb(0,0,0))
             t1.setTextColor(Color.rgb(255,255,255))
@@ -141,11 +154,13 @@ class questionsFrag : Fragment(){
 
         }
     }
+    //create list questions based on topic
 
     fun phoneVibrate(x: Int) {
        // val b = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
         //b?.vibrate(x.toLong())
     }
+
 
     //______________________________________________________________________________________________
     //methods not to be touched, don't want to mess with interface methods
