@@ -1,5 +1,6 @@
 package com.example.imtia.apcsquiz
 
+import android.graphics.Bitmap
 import java.sql.Blob
 
 class QuestionObject {
@@ -8,7 +9,7 @@ class QuestionObject {
     var category2: String ?= null
     var category3: String ?= null
     var Year: Int = 0
-    lateinit var Question: Blob
+    var Question: ByteArray ?= null
     var correctAnswer: String ?= null
     var answerA: String ?= null
     var answerB: String ?= null
@@ -16,7 +17,10 @@ class QuestionObject {
     var answerD: String ?= null
     var answerE: String ?= null
 
-    constructor(qn:Int, c1:String, c2:String, c3:String, year:Int, question:Blob, cA:String, aA:String, aB:String, aC:String, aD:String, aE:String){
+    constructor()
+
+    constructor(qn:Int, c1:String, c2:String, c3:String, year:Int, question:ByteArray,
+                cA:String, aA:String, aB:String, aC:String, aD:String, aE:String){
 
         this.qn = qn
         this.category1 = c1

@@ -11,7 +11,7 @@ import android.util.Log
 
 
 class Main2Activity : AppCompatActivity(), questionsFrag.OnFragmentInteractionListener {
-    val TAG: String = "Main2Activity"
+    private val TAG: String = "Main2Activity"
     lateinit var questionFragment: questionsFrag
 
     override fun onCreate(savedInstanceState: Bundle?) {

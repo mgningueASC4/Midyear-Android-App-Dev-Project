@@ -13,9 +13,11 @@ import android.view.View.*
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.imtia.apcsquiz.DBHandlers.DBHelper
 import com.example.imtia.apcsquiz.Main2Activity
 
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class questionsFrag : Fragment(){
@@ -26,9 +28,12 @@ class questionsFrag : Fragment(){
     lateinit var t4: TextView
     lateinit var t5: TextView
     lateinit var btn: ImageView
-
+    var mContext = this.activity
 
     var ar:ArrayList<TextView> = ArrayList<TextView>()
+    var questions:ArrayList<QuestionObject> = ArrayList<QuestionObject>()
+
+    lateinit var dbHelper: DBHelper
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +58,9 @@ class questionsFrag : Fragment(){
 
             btn = v.findViewById(R.id.gifImageView) as ImageView
 
+            //create database
+            dbHelper = DBHelper(v.context)
+            questions = dbHelper.getAllQuestions()
             //inflate layout
             inflater.inflate(R.layout.fragment_q, container, false)
             //start actions
@@ -62,9 +70,9 @@ class questionsFrag : Fragment(){
 
     //method to initialize answer buttons
     fun initButtons(){
-        t1!!.setOnClickListener {
-            t1!!.setBackgroundColor(Color.rgb(0,0,0))
-            t1!!.setTextColor(Color.rgb(255,255,255))
+        t1.setOnClickListener {
+            t1.setBackgroundColor(Color.rgb(0,0,0))
+            t1.setTextColor(Color.rgb(255,255,255))
             btn.visibility = VISIBLE
 
             for(x in ar){
@@ -76,9 +84,9 @@ class questionsFrag : Fragment(){
 
         }
 
-        t2!!.setOnClickListener {
-            t2!!.setBackgroundColor(Color.rgb(0,0,0))
-            t2!!.setTextColor(Color.rgb(255,255,255))
+        t2.setOnClickListener {
+            t2.setBackgroundColor(Color.rgb(0,0,0))
+            t2.setTextColor(Color.rgb(255,255,255))
             btn.visibility = VISIBLE
 
             for(x in ar){
@@ -90,9 +98,9 @@ class questionsFrag : Fragment(){
 
         }
 
-        t3!!.setOnClickListener {
-            t3!!.setBackgroundColor(Color.rgb(0,0,0))
-            t3!!.setTextColor(Color.rgb(255,255,255))
+        t3.setOnClickListener {
+            t3.setBackgroundColor(Color.rgb(0,0,0))
+            t3.setTextColor(Color.rgb(255,255,255))
             btn.visibility = VISIBLE
 
             for(x in ar){
@@ -105,9 +113,9 @@ class questionsFrag : Fragment(){
 
         }
 
-        t4!!.setOnClickListener {
-            t4!!.setBackgroundColor(Color.rgb(0,0,0))
-            t4!!.setTextColor(Color.rgb(255,255,255))
+        t4.setOnClickListener {
+            t4.setBackgroundColor(Color.rgb(0,0,0))
+            t4.setTextColor(Color.rgb(255,255,255))
             btn.visibility = VISIBLE
 
             for(x in ar){
@@ -119,9 +127,9 @@ class questionsFrag : Fragment(){
         }
 
 
-        t5!!.setOnClickListener {
-            t5!!.setBackgroundColor(Color.rgb(0,0,0))
-            t5!!.setTextColor(Color.rgb(255,255,255))
+        t5.setOnClickListener {
+            t5.setBackgroundColor(Color.rgb(0,0,0))
+            t5.setTextColor(Color.rgb(255,255,255))
             btn.visibility = VISIBLE
 
             for(x in ar){
