@@ -54,7 +54,7 @@
                     android:id="@+id/ab_expressions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Algorithm and Boolean"
+                    android:text="Algorithm and Boolean Expressions"
                     
                     />
 

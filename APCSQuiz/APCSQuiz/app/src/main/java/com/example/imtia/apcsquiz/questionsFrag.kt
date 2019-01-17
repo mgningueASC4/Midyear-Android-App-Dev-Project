@@ -34,7 +34,8 @@ class questionsFrag : Fragment(){
 
     //arrays of buttons and questions
     var ar:ArrayList<TextView> = ArrayList<TextView>()
-    var questions:ArrayList<QuestionObject> = ArrayList<QuestionObject>()
+    var masterList:ArrayList<QuestionObject> = ArrayList<QuestionObject>()
+    var topicQuestions:ArrayList<QuestionObject> = ArrayList<QuestionObject>()
 
     //database handling
     lateinit var dbHelper: DBHelper
@@ -54,7 +55,7 @@ class questionsFrag : Fragment(){
             initButtons(v)
             //create database
             dbHelper = DBHelper(v.context)
-            questions = dbHelper.getAllQuestions()
+            masterList = dbHelper.getAllQuestions()
             //inflate layout
             inflater.inflate(R.layout.fragment_q, container, false)
             //retrieve topic
@@ -155,6 +156,52 @@ class questionsFrag : Fragment(){
         }
     }
     //create list questions based on topic
+    fun modifyCategories(){
+        for(x in masterList){
+            when(x.category1){
+                "1-D Arrays" -> x.category1 = "Arrays"
+                "2-D Arrays" -> x.category1 = "Arrays"
+                "LinkedLists Using ListNode" -> x.category1 = "Arraylists"
+                "Iterators" -> x.category1 = "Searching and Sorting"
+                "Trees Using TreeNode" -> x.category1 = "Searching and Sorting"
+                "Sets and Maps" -> x.category1 = "Algorithms and Big O"
+                "Heaps" -> x.category1 = "Recursion"
+                "Binary Search" -> x.category1 = "Searching and Sorting"
+                "Comparable and Comparator" -> x.category1 = "Searching and Sorting"
+                "Puzzles" -> x.category1 = "Searching and Sorting"
+                "Stacks and Ques" -> x.category1 = "Recursion"
+            }
+            when(x.category2){
+                "1-D Arrays" -> x.category2 = "Arrays"
+                "2-D Arrays" -> x.category2 = "Arrays"
+                "LinkedLists Using ListNode" -> x.category2 = "Arraylists"
+                "Iterators" -> x.category2 = "Searching and Sorting"
+                "Trees Using TreeNode" -> x.category2 = "Searching and Sorting"
+                "Sets and Maps" -> x.category2 = "Algorithms and Big O"
+                "Heaps" -> x.category2 = "Recursion"
+                "Binary Search" -> x.category2 = "Searching and Sorting"
+                "Comparable and Comparator" -> x.category2 = "Searching and Sorting"
+                "Puzzles" -> x.category2 = "Searching and Sorting"
+                "Stacks and Ques" -> x.category2 = "Recursion"
+            }
+            when(x.category3){
+                "1-D Arrays" -> x.category3 = "Arrays"
+                "2-D Arrays" -> x.category3 = "Arrays"
+                "LinkedLists Using ListNode" -> x.category3 = "Arraylists"
+                "Iterators" -> x.category3 = "Searching and Sorting"
+                "Trees Using TreeNode" -> x.category3 = "Searching and Sorting"
+                "Sets and Maps" -> x.category3 = "Algorithms and Big O"
+                "Heaps" -> x.category3 = "Recursion"
+                "Binary Search" -> x.category3 = "Searching and Sorting"
+                "Comparable and Comparator" -> x.category3 = "Searching and Sorting"
+                "Puzzles" -> x.category3 = "Searching and Sorting"
+                "Stacks and Ques" -> x.category3 = "Recursion"
+            }
+        }
+    }
+    fun getTopicQuestions(){
+
+    }
 
     fun phoneVibrate(x: Int) {
        // val b = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
