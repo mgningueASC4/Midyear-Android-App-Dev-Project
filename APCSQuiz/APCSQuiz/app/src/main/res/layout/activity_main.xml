@@ -107,7 +107,7 @@
                     android:text="Recursion"
                     />
                 <Button
-                    android:id="@+id/algorithms_and_big_o"
+                    android:id="@+id/big_o"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Algorithms and Big O"
