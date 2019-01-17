@@ -13,10 +13,10 @@
         android:layout_height="match_parent">
 
         <fragment
-            android:id="@+id/fragment3"
+            android:id="@+id/questionFragment"
             android:name="com.example.imtia.apcsquiz.questionsFrag"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout="@layout/fragment_q" />
+            />
     </FrameLayout>
 </android.support.constraint.ConstraintLayout>

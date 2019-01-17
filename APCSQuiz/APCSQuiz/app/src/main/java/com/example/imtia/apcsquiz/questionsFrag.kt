@@ -2,38 +2,35 @@ package com.example.imtia.apcsquiz
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.PointF.length
-import android.graphics.drawable.ColorDrawable
-import android.media.Image
+import android.net.Uri
 import android.os.Bundle
 import android.os.Vibrator
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget
-import kotlinx.android.synthetic.main.fragment_q.*
-import org.w3c.dom.Text
+import com.example.imtia.apcsquiz.Main2Activity
 
-//import com.felipecsl.gifimageview.library.GifImageView
+import java.util.*
 
 
-class questionsFrag:Fragment(){
-
+class questionsFrag : Fragment(){
+    //widgets
     lateinit var t1: TextView
     lateinit var t2: TextView
     lateinit var t3: TextView
     lateinit var t4: TextView
     lateinit var t5: TextView
     lateinit var btn: ImageView
+
+
     var ar:ArrayList<TextView> = ArrayList<TextView>()
-    var userAnswers:ArrayList<String> = ArrayList<String>()
+    private var listener: OnFragmentInteractionListener? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         }
@@ -41,22 +38,29 @@ class questionsFrag:Fragment(){
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
             val v:View = inflater.inflate(R.layout.fragment_q, container, false)
+            //implement widgetes
             t1 = v.findViewById<TextView>(R.id.textView4)
             t2 = v.findViewById<TextView>(R.id.textView8)
             t3 = v.findViewById<TextView>(R.id.textView9)
             t4 = v.findViewById<TextView>(R.id.textView10)
             t5 = v.findViewById<TextView>(R.id.textView)
+
             ar.add(0, t1)
             ar.add(1, t2)
             ar.add(2, t3)
             ar.add(3, t4)
             ar.add(4,t5)
+
             btn = v.findViewById(R.id.gifImageView) as ImageView
+
+            //inflate layout
             inflater.inflate(R.layout.fragment_q, container, false)
+            //start actions
             initButtons()
             return v
     }
 
+    //method to initialize answer buttons
     fun initButtons(){
         t1!!.setOnClickListener {
             t1!!.setBackgroundColor(Color.rgb(0,0,0))
@@ -135,5 +139,39 @@ class questionsFrag:Fragment(){
         //b?.vibrate(x.toLong())
     }
 
+    //______________________________________________________________________________________________
+    //methods not to be touched, don't want to mess with interface methods
+    fun onButtonPressed(uri: Uri) {
+        listener?.onFragmentInteraction(uri)
+    }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnFragmentInteractionListener) {
+            listener = context
+        } else {
+            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     *
+     *
+     * See the Android Training lesson [Communicating with Other Fragments]
+     * (http://developer.android.com/training/basics/fragments/communicating.html)
+     * for more information.
+     */
+    interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        fun onFragmentInteraction(uri: Uri)
+    }
 }
