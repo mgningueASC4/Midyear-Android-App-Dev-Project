@@ -46,23 +46,32 @@ class questionsFrag : Fragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //retrieve topic
+        //topic = arguments?.getString("TOPIC")
+    }
+
+    companion object {
+        fun newInstance(topic:String): questionsFrag{
+            val args = Bundle()
+            args.putString("TOPIC", topic)
+            val fragment = questionsFrag()
+            fragment.arguments = args
+            return fragment
         }
+    }
 
-
-        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-            val v:View = inflater.inflate(R.layout.fragment_q, container, false)
-            //implement widgetes
-            initButtons(v)
-            //create database
-            dbHelper = DBHelper(v.context)
-            masterList = dbHelper.getAllQuestions()
-            //inflate layout
-            inflater.inflate(R.layout.fragment_q, container, false)
-            //retrieve topic
-            topic = arguments!!.getString("TOPIC")
-            //start actions
-            btnFunction()
-            return v
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val v:View = inflater.inflate(R.layout.fragment_q, container, false)
+        //implement widgetes
+        initButtons(v)
+        //create database
+        dbHelper = DBHelper(v.context)
+        masterList = dbHelper.getAllQuestions()
+        //inflate layout
+        inflater.inflate(R.layout.fragment_q, container, false)
+        //start actions
+        btnFunction()
+        return v
     }
 
     //method to initialize answer buttons

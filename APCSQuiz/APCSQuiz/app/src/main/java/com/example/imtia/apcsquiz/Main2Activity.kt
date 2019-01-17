@@ -20,15 +20,14 @@ class Main2Activity : AppCompatActivity(), questionsFrag.OnFragmentInteractionLi
         setContentView(R.layout.activity_main2)
         //Retrieve topic of quiz
         this.topic = intent.getStringExtra("TOPIC")
-        //initialize fragment
-        questionFragment = questionsFrag()
+        Log.d(TAG, "this is the topic: " + topic)
         init()
     }
 
     fun init(){
-        var bundle: Bundle ?= Bundle()
-        bundle?.putString("TOPIC", this.topic)
-        questionFragment.arguments = bundle
+        //questionFragment.arguments!!.putString("TOPIC", this.topic)
+        //initialize fragment
+        questionFragment = questionsFrag.newInstance(this.topic)
         //replace fragments in container
         supportFragmentManager
                 .beginTransaction()
