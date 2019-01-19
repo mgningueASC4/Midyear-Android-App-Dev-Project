@@ -19,16 +19,19 @@ class Main2Activity : AppCompatActivity(), questionsFrag.OnFragmentInteractionLi
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
         //Retrieve topic of quiz
-        this.topic = intent.getStringExtra("TOPIC")
+        topic = intent.getStringExtra("TOPIC")
         Log.d(TAG, "this is the topic: " + topic)
+        //initialize fragment
+        questionFragment = questionsFrag()
+
         init()
     }
 
     fun init(){
-        //questionFragment.arguments!!.putString("TOPIC", this.topic)
-        //initialize fragment
-        questionFragment = questionsFrag.newInstance(this.topic)
         //replace fragments in container
+        val bundle = Bundle()
+        bundle.putString("TOPIC", topic)
+        questionFragment.arguments = bundle
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.questionFragment, questionFragment)
@@ -37,8 +40,10 @@ class Main2Activity : AppCompatActivity(), questionsFrag.OnFragmentInteractionLi
         Log.d(TAG, "question fragment started")
     }
 
+
     override fun onFragmentInteraction(uri: Uri) {
 
     }
+
 
 }
