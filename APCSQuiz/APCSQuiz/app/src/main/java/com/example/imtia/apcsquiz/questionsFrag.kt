@@ -50,14 +50,17 @@ class questionsFrag : Fragment(){
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        //inflate layout
         val v:View = inflater.inflate(R.layout.fragment_q, container, false)
+        inflater.inflate(R.layout.fragment_q, container, false)
+
         //implement widgetes
         initButtons(v)
+
         //create database
         dbHelper = DBHelper(v.context)
+        //get list of all questions from db
         masterList = dbHelper.getAllQuestions()
-        //inflate layout
-        inflater.inflate(R.layout.fragment_q, container, false)
 
         //start actions
         btnFunction()
