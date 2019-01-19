@@ -59,6 +59,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VE
         if(mUpgradeDb) {
             mUpgradeDb = false
             copyDatabaseFromAssets(db)
+            Log.d(TAG, "Copied DB")
         }
     }
 
@@ -137,7 +138,54 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VE
         }
         cursor.close()
         db.close()
+
+        modifyCategories(questionList)
+
         return questionList
+    }
+
+    fun modifyCategories(list: ArrayList<QuestionObject>){
+        for(x in list){
+            when(x.category1){
+                "1-D Arrays" -> x.category1 = "Arrays"
+                "2-D Arrays" -> x.category1 = "Arrays"
+                "LinkedLists Using ListNode" -> x.category1 = "Arraylists"
+                "Iterators" -> x.category1 = "Searching and Sorting"
+                "Trees Using TreeNode" -> x.category1 = "Searching and Sorting"
+                "Sets and Maps" -> x.category1 = "Algorithms and Big O"
+                "Heaps" -> x.category1 = "Recursion"
+                "Binary Search" -> x.category1 = "Searching and Sorting"
+                "Comparable and Comparator" -> x.category1 = "Searching and Sorting"
+                "Puzzles" -> x.category1 = "Searching and Sorting"
+                "Stacks and Ques" -> x.category1 = "Recursion"
+            }
+            when(x.category2){
+                "1-D Arrays" -> x.category2 = "Arrays"
+                "2-D Arrays" -> x.category2 = "Arrays"
+                "LinkedLists Using ListNode" -> x.category2 = "Arraylists"
+                "Iterators" -> x.category2 = "Searching and Sorting"
+                "Trees Using TreeNode" -> x.category2 = "Searching and Sorting"
+                "Sets and Maps" -> x.category2 = "Algorithms and Big O"
+                "Heaps" -> x.category2 = "Recursion"
+                "Binary Search" -> x.category2 = "Searching and Sorting"
+                "Comparable and Comparator" -> x.category2 = "Searching and Sorting"
+                "Puzzles" -> x.category2 = "Searching and Sorting"
+                "Stacks and Ques" -> x.category2 = "Recursion"
+            }
+            when(x.category3){
+                "1-D Arrays" -> x.category3 = "Arrays"
+                "2-D Arrays" -> x.category3 = "Arrays"
+                "LinkedLists Using ListNode" -> x.category3 = "Arraylists"
+                "Iterators" -> x.category3 = "Searching and Sorting"
+                "Trees Using TreeNode" -> x.category3 = "Searching and Sorting"
+                "Sets and Maps" -> x.category3 = "Algorithms and Big O"
+                "Heaps" -> x.category3 = "Recursion"
+                "Binary Search" -> x.category3 = "Searching and Sorting"
+                "Comparable and Comparator" -> x.category3 = "Searching and Sorting"
+                "Puzzles" -> x.category3 = "Searching and Sorting"
+                "Stacks and Ques" -> x.category3 = "Recursion"
+            }
+        }
     }
 
 }

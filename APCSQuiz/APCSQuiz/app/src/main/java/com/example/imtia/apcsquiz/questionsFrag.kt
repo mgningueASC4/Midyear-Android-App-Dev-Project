@@ -22,6 +22,7 @@ import kotlin.collections.ArrayList
 
 class questionsFrag : Fragment(){
     //widgets
+    private val TAG = "questionFrag"
     lateinit var t1: TextView
     lateinit var t2: TextView
     lateinit var t3: TextView
@@ -42,7 +43,7 @@ class questionsFrag : Fragment(){
     private var listener: OnFragmentInteractionListener? = null
 
     //topic of questions
-    private lateinit var topic: String
+    private var topic: String ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +54,7 @@ class questionsFrag : Fragment(){
         //inflate layout
         val v:View = inflater.inflate(R.layout.fragment_q, container, false)
         inflater.inflate(R.layout.fragment_q, container, false)
-
+        Log.d(TAG, "question frag view inflated")
         //implement widgetes
         initButtons(v)
 
@@ -62,6 +63,13 @@ class questionsFrag : Fragment(){
         //get list of all questions from db
         masterList = dbHelper.getAllQuestions()
 
+        //retrieve topic
+        val args : Bundle ?= arguments
+        topic = args?.getString("TOPIC")
+        Log.d(TAG, "Topic selected: " + topic)
+
+        //create list of questions according to topic selected
+        getTopicQuestions(topic, topicQuestions)
         //start actions
         btnFunction()
         return v
@@ -158,56 +166,16 @@ class questionsFrag : Fragment(){
         }
     }
     //create list questions based on topic
-    fun modifyCategories(){
-        for(x in masterList){
-            when(x.category1){
-                "1-D Arrays" -> x.category1 = "Arrays"
-                "2-D Arrays" -> x.category1 = "Arrays"
-                "LinkedLists Using ListNode" -> x.category1 = "Arraylists"
-                "Iterators" -> x.category1 = "Searching and Sorting"
-                "Trees Using TreeNode" -> x.category1 = "Searching and Sorting"
-                "Sets and Maps" -> x.category1 = "Algorithms and Big O"
-                "Heaps" -> x.category1 = "Recursion"
-                "Binary Search" -> x.category1 = "Searching and Sorting"
-                "Comparable and Comparator" -> x.category1 = "Searching and Sorting"
-                "Puzzles" -> x.category1 = "Searching and Sorting"
-                "Stacks and Ques" -> x.category1 = "Recursion"
-            }
-            when(x.category2){
-                "1-D Arrays" -> x.category2 = "Arrays"
-                "2-D Arrays" -> x.category2 = "Arrays"
-                "LinkedLists Using ListNode" -> x.category2 = "Arraylists"
-                "Iterators" -> x.category2 = "Searching and Sorting"
-                "Trees Using TreeNode" -> x.category2 = "Searching and Sorting"
-                "Sets and Maps" -> x.category2 = "Algorithms and Big O"
-                "Heaps" -> x.category2 = "Recursion"
-                "Binary Search" -> x.category2 = "Searching and Sorting"
-                "Comparable and Comparator" -> x.category2 = "Searching and Sorting"
-                "Puzzles" -> x.category2 = "Searching and Sorting"
-                "Stacks and Ques" -> x.category2 = "Recursion"
-            }
-            when(x.category3){
-                "1-D Arrays" -> x.category3 = "Arrays"
-                "2-D Arrays" -> x.category3 = "Arrays"
-                "LinkedLists Using ListNode" -> x.category3 = "Arraylists"
-                "Iterators" -> x.category3 = "Searching and Sorting"
-                "Trees Using TreeNode" -> x.category3 = "Searching and Sorting"
-                "Sets and Maps" -> x.category3 = "Algorithms and Big O"
-                "Heaps" -> x.category3 = "Recursion"
-                "Binary Search" -> x.category3 = "Searching and Sorting"
-                "Comparable and Comparator" -> x.category3 = "Searching and Sorting"
-                "Puzzles" -> x.category3 = "Searching and Sorting"
-                "Stacks and Ques" -> x.category3 = "Recursion"
+    fun getTopicQuestions(topic:String?, list:ArrayList<QuestionObject>){
+        for (x in masterList){
+            if(x.category1.equals(topic) || x.category2.equals(topic) || x.category3.equals(topic)){
+                list.add(x)
+                Log.d(TAG, "Questions for: " + topic + ", question year: " + x.Year)
             }
         }
     }
-    fun getTopicQuestions(){
 
-    }
-
-    fun phoneVibrate(x: Int) {
-       // val b = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
-        //b?.vibrate(x.toLong())
+    fun showQuiz(list:ArrayList<QuestionObject>){
     }
 
 

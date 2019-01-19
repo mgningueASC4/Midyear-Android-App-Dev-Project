@@ -34,7 +34,7 @@ class Main2Activity : AppCompatActivity(), questionsFrag.OnFragmentInteractionLi
         questionFragment.arguments = bundle
         supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.questionFragment, questionFragment)
+                .replace(R.id.fragmentHolder, questionFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit()
         Log.d(TAG, "question fragment started")
