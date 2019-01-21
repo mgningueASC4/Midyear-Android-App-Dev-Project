@@ -2,6 +2,7 @@ package com.example.imtia.apcsquiz
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.AnimationDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Vibrator
@@ -12,6 +13,7 @@ import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.example.imtia.apcsquiz.DBHandlers.DBHelper
 import com.example.imtia.apcsquiz.Main2Activity
@@ -82,7 +84,11 @@ class questionsFrag : Fragment(){
         t3 = v.findViewById<TextView>(R.id.textView9)
         t4 = v.findViewById<TextView>(R.id.textView10)
         t5 = v.findViewById<TextView>(R.id.textView)
-
+        val screenbg = v.findViewById<RelativeLayout>(R.id.questionFragment)
+        val a:AnimationDrawable = screenbg.background as AnimationDrawable
+        a.setEnterFadeDuration(3000)
+        a.setExitFadeDuration(3000)
+        a.start()
         ar.add(0, t1)
         ar.add(1, t2)
         ar.add(2, t3)
