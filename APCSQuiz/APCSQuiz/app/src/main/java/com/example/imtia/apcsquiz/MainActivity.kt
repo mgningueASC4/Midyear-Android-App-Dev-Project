@@ -5,9 +5,14 @@ import android.graphics.drawable.AnimationDrawable
 import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.Button
 import android.widget.RelativeLayout
+import android.widget.ScrollView
+import android.widget.Toast
+import android.widget.Toast.*
 import com.bumptech.glide.request.animation.ViewPropertyAnimation
 import com.example.imtia.apcsquiz.R.layout.activity_main2
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var recursionBtn: Button
     lateinit var bigOBtn: Button
     lateinit var searchSortBtn: Button
+    lateinit var scrollView: ScrollView
     var btnList : ArrayList<Button>  = ArrayList<Button>()
 
 
@@ -36,7 +42,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initWidgets(){
-       // testButton = TestButton
+        //scrollview
+        scrollView = buttonScrollView
+
+        // testButton = TestButton
         algorithmBtn = ab_expressions
         loopBtn = loops
         arrayBtn = arrays
@@ -61,18 +70,29 @@ class MainActivity : AppCompatActivity() {
         btnList.add(bigOBtn)
         btnList.add(searchSortBtn)
 
+        //set methods for buttons
         for(x in btnList){
             var v = x.rootView
             var t = x.text.toString()
             x.setOnClickListener {
                 menuBtnAction(v, t)
             }
+            /*
             var a: AnimationDrawable = x.background as AnimationDrawable
             a.setEnterFadeDuration(3000)
             a.setExitFadeDuration(3000)
             a.start()
+            */
         }
 
+        initScrollListener(scrollView)
+
+    }
+    fun initScrollListener(v:ScrollView){
+        Log.d("Main", "checking scroll")
+        v.getViewTreeObserver().addOnScrollChangedListener {
+            Log.d("Main", "scrolling...")
+        }
     }
 
     fun menuBtnAction(v: View , topic:String){

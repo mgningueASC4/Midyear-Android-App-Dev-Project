@@ -5,7 +5,7 @@
     android:id="@+id/startscreen"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#000"
+    android:background="#fff"
     tools:context=".MainActivity">
 
 
@@ -16,8 +16,20 @@
         android:scrollbarFadeDuration="20"
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:orientation="horizontal"
-       >
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Bronx Science Zero To Hero APCS"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:layout_marginTop="5dp"
+            android:textSize="30sp"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/titletextbackground"
+            />
 
         <ScrollView
             android:id="@+id/buttonScrollView"
@@ -31,30 +43,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_margin="3dp">
 
                 <Button
                     android:id="@+id/ab_expressions"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:textColor="#fff"
+                    android:textColor="#000"
                     android:fontFamily="monospace"
                     android:textStyle="bold"
-                    android:background="@drawable/bganimator"
                     android:drawableTop="@drawable/ic_algorithmicon"
-                    android:text="Algorithm and Boolean Expressions" />
+                    android:text="Algorithm and Boolean Expressions"
+                    android:elevation="10dp"/>
 
                 <Button
                     android:id="@+id/loops"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:fontFamily="monospace"
-                    android:textColor="#fff"
+                    android:textColor="#000"
                     android:textStyle="bold"
-                    android:background="@drawable/bganimator"
                     android:drawableTop="@drawable/ic_loopicon"
                     android:text="Loops"
-
+                    android:elevation="10dp"
                     />
 
                 <Button
@@ -62,12 +74,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:text="Arrays"
-                    android:textColor="#fff"
+                    android:textColor="#000"
                     android:textStyle="bold"
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_arrayicon"
-                    android:background="@drawable/bganimator"
-
+                    android:elevation="10dp"
                     />
 
                 <Button
@@ -75,49 +86,47 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:text="Arraylists"
-                    android:textColor="#fff"
+                    android:textColor="#000"
                     android:textStyle="bold"
                     android:fontFamily="monospace"
-                    android:drawableTop="@drawable/ic_arraylisticon"
-                    android:background="@drawable/bganimator"
+                    android:drawableTop="@drawable/ic_arraylist"
+                    android:elevation="10dp"
                     />
 
                 <Button
                     android:id="@+id/strings"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:textColor="#fff"
+                    android:textColor="#000"
                     android:drawableTop="@drawable/ic_stringsicon"
                     android:textStyle="bold"
                     android:text="Strings"
-                    android:background="@drawable/bganimator"
                     android:fontFamily="monospace"
+                    android:elevation="10dp"
                     />
 
                 <Button
                     android:id="@+id/class_interface_inheritance_polymorphism"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:textColor="#fff"
+                    android:textColor="#000"
                     android:textStyle="bold"
                     android:text="Classes, Interfaces, Inheritance, Polymorphism"
-                    android:background="@drawable/bganimator"
                     android:drawableTop="@drawable/ic_inheritance"
                     android:fontFamily="monospace"
-
+                    android:elevation="10dp"
                     />
 
                 <Button
                     android:id="@+id/fields_methods_prameter"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:textColor="#fff"
+                    android:textColor="#000"
                     android:textStyle="bold"
                     android:text="Fields, Methods and Parameter Passing"
-                    android:background="@drawable/bganimator"
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_parametersicon"
-
+                    android:elevation="10dp"
                     />
 
                 <Button
@@ -125,12 +134,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:text="Recursion"
-                    android:textColor="#fff"
+                    android:textColor="#000"
                     android:textStyle="bold"
-                    android:background="@drawable/bganimator"
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_recursionicon"
-
+                    android:elevation="10dp"
                     />
 
                 <Button
@@ -138,9 +146,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:text="Algorithms and Big O"
-                    android:textColor="#fff"
+                    android:textColor="#000"
                     android:textStyle="bold"
-                    android:background="@drawable/bganimator"
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_bigoicon"
                     />
@@ -150,11 +157,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:text="Searching and Sorting"
-                    android:textColor="#fff"
+                    android:textColor="#000"
                     android:textStyle="bold"
-                    android:background="@drawable/bganimator"
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_sortingicon"
+                    android:elevation="10dp"
                     />
             </LinearLayout>
 
