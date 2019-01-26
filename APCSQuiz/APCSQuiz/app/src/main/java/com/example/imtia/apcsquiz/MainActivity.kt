@@ -3,17 +3,14 @@ package com.example.imtia.apcsquiz
 import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.graphics.drawable.Drawable
+import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
-import android.view.ViewTreeObserver
-import android.widget.Button
-import android.widget.RelativeLayout
-import android.widget.ScrollView
-import android.widget.Toast
+import android.widget.*
 import android.widget.Toast.*
-import com.bumptech.glide.request.animation.ViewPropertyAnimation
 import com.example.imtia.apcsquiz.R.layout.activity_main2
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -32,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var searchSortBtn: Button
     lateinit var scrollView: ScrollView
     var btnList : ArrayList<Button>  = ArrayList<Button>()
+    lateinit var cardFlip: MediaPlayer
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +40,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initWidgets(){
+        //init sound
+        cardFlip = MediaPlayer.create(this, R.raw.cardflip)
         //scrollview
         scrollView = buttonScrollView
 
@@ -75,7 +75,21 @@ class MainActivity : AppCompatActivity() {
             var v = x.rootView
             var t = x.text.toString()
             x.setOnClickListener {
-                menuBtnAction(v, t)
+                menuBtnAction(v, t, cardFlip)
+            }
+
+            x.setOnTouchListener{v, event ->
+                if(event.action == MotionEvent.ACTION_DOWN){
+                    //x.setLayoutParams(LinearLayout.LayoutParams(x.width+20, x.height+20))
+                    //x.setElevation(x.elevation+10)
+                    true
+                }
+                if(event.action == MotionEvent.ACTION_UP){
+                    //x.setLayoutParams(LinearLayout.LayoutParams(x.width-20, x.height-20))
+                    //x.setElevation(x.elevation-10)
+                    true
+                }
+                false
             }
             /*
             var a: AnimationDrawable = x.background as AnimationDrawable
@@ -85,19 +99,21 @@ class MainActivity : AppCompatActivity() {
             */
         }
 
-        initScrollListener(scrollView)
+        initScrollListener(scrollView, cardFlip)
 
     }
-    fun initScrollListener(v:ScrollView){
+    fun initScrollListener(v:ScrollView, m:MediaPlayer){
         Log.d("Main", "checking scroll")
         v.getViewTreeObserver().addOnScrollChangedListener {
             Log.d("Main", "scrolling...")
+            m.start()
         }
     }
 
-    fun menuBtnAction(v: View , topic:String){
+    fun menuBtnAction(v: View , topic:String, m:MediaPlayer){
         val i:Intent = Intent(this,Main2Activity::class.java)
         i.putExtra("TOPIC", topic)
         startActivity(i)
+        m.start()
     }
 }
