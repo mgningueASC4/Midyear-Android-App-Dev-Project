@@ -150,6 +150,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VE
                 "1-D Arrays" -> x.category1 = "Arrays"
                 "2-D Arrays" -> x.category1 = "Arrays"
                 "LinkedLists Using ListNode" -> x.category1 = "Arraylists"
+                "ArrayList and LinkedList" -> x.category1 = "Arraylists"
                 "Iterators" -> x.category1 = "Searching and Sorting"
                 "Trees Using TreeNode" -> x.category1 = "Searching and Sorting"
                 "Sets and Maps" -> x.category1 = "Algorithms and Big O"
@@ -158,11 +159,14 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VE
                 "Comparable and Comparator" -> x.category1 = "Searching and Sorting"
                 "Puzzles" -> x.category1 = "Searching and Sorting"
                 "Stacks and Ques" -> x.category1 = "Recursion"
+                "Strings " -> x.category1 = "Strings"
             }
+
             when(x.category2){
                 "1-D Arrays" -> x.category2 = "Arrays"
                 "2-D Arrays" -> x.category2 = "Arrays"
                 "LinkedLists Using ListNode" -> x.category2 = "Arraylists"
+                "ArrayList and LinkedList" -> x.category2 = "Arraylists"
                 "Iterators" -> x.category2 = "Searching and Sorting"
                 "Trees Using TreeNode" -> x.category2 = "Searching and Sorting"
                 "Sets and Maps" -> x.category2 = "Algorithms and Big O"
@@ -171,11 +175,13 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VE
                 "Comparable and Comparator" -> x.category2 = "Searching and Sorting"
                 "Puzzles" -> x.category2 = "Searching and Sorting"
                 "Stacks and Ques" -> x.category2 = "Recursion"
+                "Strings " -> x.category2 = "Strings"
             }
             when(x.category3){
                 "1-D Arrays" -> x.category3 = "Arrays"
                 "2-D Arrays" -> x.category3 = "Arrays"
                 "LinkedLists Using ListNode" -> x.category3 = "Arraylists"
+                "ArrayList and LinkedList" -> x.category3 = "Arraylists"
                 "Iterators" -> x.category3 = "Searching and Sorting"
                 "Trees Using TreeNode" -> x.category3 = "Searching and Sorting"
                 "Sets and Maps" -> x.category3 = "Algorithms and Big O"
@@ -184,6 +190,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VE
                 "Comparable and Comparator" -> x.category3 = "Searching and Sorting"
                 "Puzzles" -> x.category3 = "Searching and Sorting"
                 "Stacks and Ques" -> x.category3 = "Recursion"
+                "Strings " -> x.category3 = "Strings"
             }
         }
     }

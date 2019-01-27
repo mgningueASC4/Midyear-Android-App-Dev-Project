@@ -94,17 +94,15 @@
                 android:layout_marginBottom="5dp"/>
 
         </LinearLayout>
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gifImageView"
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:src="@drawable/betternextbtn"
+            android:layout_gravity="center"
+            android:visibility="invisible" />
     </ScrollView>
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/gifImageView"
-        android:layout_width="73dp"
-        android:layout_height="61dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="149dp"
-        android:layout_marginBottom="8dp"
-        android:src="@drawable/betternextbtn"
-        android:visibility="invisible" />
+
 
 </RelativeLayout>

@@ -14,9 +14,11 @@ import android.view.View.*
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import com.example.imtia.apcsquiz.DBHandlers.DBHelper
 import com.example.imtia.apcsquiz.Main2Activity
+import com.example.imtia.apcsquiz.Utils.Utils
 import kotlinx.android.synthetic.main.fragment_q.*
 
 import java.util.*
@@ -33,6 +35,7 @@ class questionsFrag : Fragment(){
     lateinit var e: TextView
     lateinit var nextBtn: ImageView
     lateinit var questionImage: ImageView
+    lateinit var panelScrollView: ScrollView
 
     var mContext = this.activity
 
@@ -88,7 +91,7 @@ class questionsFrag : Fragment(){
         c = v.findViewById(R.id.choiceC) as TextView
         d = v.findViewById(R.id.choiceD) as TextView
         e = v.findViewById(R.id.choiceE) as TextView
-        
+        panelScrollView = v.findViewById(R.id.answersScrollView) as ScrollView
         
         ar.add(0, a)
         ar.add(1, b)
@@ -107,6 +110,7 @@ class questionsFrag : Fragment(){
             a.setBackgroundResource(R.drawable.answerselectedbackground)
             a.setTextColor(Color.rgb(0,0,0))
             nextBtn.visibility = VISIBLE
+            panelScrollView.scrollTo(panelScrollView.maxScrollAmount, panelScrollView.maxScrollAmount)
 
             for(x in ar){
                if(x!=a){
@@ -121,6 +125,7 @@ class questionsFrag : Fragment(){
             b.setBackgroundResource(R.drawable.answerselectedbackground)
             b.setTextColor(Color.rgb(0,0,0))
             nextBtn.visibility = VISIBLE
+            panelScrollView.scrollTo(panelScrollView.maxScrollAmount, panelScrollView.maxScrollAmount)
 
             for(x in ar){
                 if(x!=b){
@@ -135,6 +140,7 @@ class questionsFrag : Fragment(){
             c.setBackgroundResource(R.drawable.answerselectedbackground)
             c.setTextColor(Color.rgb(0,0,0))
             nextBtn.visibility = VISIBLE
+            panelScrollView.scrollTo(panelScrollView.maxScrollAmount, panelScrollView.maxScrollAmount)
 
             for(x in ar){
                 if(x!=c){
@@ -150,6 +156,7 @@ class questionsFrag : Fragment(){
             d.setBackgroundResource(R.drawable.answerselectedbackground)
             d.setTextColor(Color.rgb(0,0,0))
             nextBtn.visibility = VISIBLE
+            panelScrollView.scrollTo(panelScrollView.maxScrollAmount, panelScrollView.maxScrollAmount)
 
             for(x in ar){
                 if(x!=d){
@@ -164,6 +171,7 @@ class questionsFrag : Fragment(){
             e.setBackgroundResource(R.drawable.answerselectedbackground)
             e.setTextColor(Color.rgb(0,0,0))
             nextBtn.visibility = VISIBLE
+            panelScrollView.scrollTo(panelScrollView.maxScrollAmount, panelScrollView.maxScrollAmount)
 
             for(x in ar){
                 if(x!=e){
@@ -191,11 +199,13 @@ class questionsFrag : Fragment(){
     }
 
     fun showQuestion(qn:Int, list:ArrayList<QuestionObject>){
-        a.setText(list.get(qn).answerA)
-        b.setText(list.get(qn).answerB)
-        c.setText(list.get(qn).answerC)
-        d.setText(list.get(qn).answerD)
-        e.setText(list.get(qn).answerE)
+        var targetQuestion = list.get(qn)
+        questionImage.setImageBitmap(Utils.getImage(targetQuestion.Question))
+        a.setText(targetQuestion.answerA)
+        b.setText(targetQuestion.answerB)
+        c.setText(targetQuestion.answerC)
+        d.setText(targetQuestion.answerD)
+        e.setText(targetQuestion.answerE)
 
     }
 
