@@ -40,6 +40,8 @@ class questionsFrag : Fragment(){
     var ar:ArrayList<TextView> = ArrayList<TextView>()
     var masterList:ArrayList<QuestionObject> = ArrayList<QuestionObject>()
     var topicQuestions:ArrayList<QuestionObject> = ArrayList<QuestionObject>()
+    var numberOfQuestions = 0
+    var currentQuestion = 0
 
     //database handling
     lateinit var dbHelper: DBHelper
@@ -61,18 +63,21 @@ class questionsFrag : Fragment(){
         //implement widgetes
         initButtons(v)
 
-        //create database
-        dbHelper = DBHelper(v.context)
-        //get list of all questions from db
-        masterList = dbHelper.getAllQuestions()
 
         //retrieve topic
         val args : Bundle ?= arguments
         topic = args?.getString("TOPIC")
         Log.d(TAG, "Topic selected: " + topic)
 
-        //create list of questions according to topic selected
-        getTopicQuestions(topic, topicQuestions)
+
+        //create database
+        dbHelper = DBHelper(v.context)
+        //get list of all questions from db
+        masterList = dbHelper.getAllQuestions()
+        topicQuestions = getQuestions(masterList, topic)
+        numberOfQuestions = topicQuestions.size
+        startTest(topicQuestions)
+
         return v
     }
 
@@ -105,7 +110,7 @@ class questionsFrag : Fragment(){
 
             for(x in ar){
                if(x!=a){
-                   x.setBackgroundResource(R.drawable.choicesbg3)
+                   x.setBackgroundResource(R.drawable.answerchoicesbackground)
                    x.setTextColor(Color.rgb(0,0,0))
                }
             }
@@ -119,7 +124,7 @@ class questionsFrag : Fragment(){
 
             for(x in ar){
                 if(x!=b){
-                    x.setBackgroundResource(R.drawable.choicesbg3)
+                    x.setBackgroundResource(R.drawable.answerchoicesbackground)
                     x.setTextColor(Color.rgb(0,0,0))
                 }
             }
@@ -133,7 +138,7 @@ class questionsFrag : Fragment(){
 
             for(x in ar){
                 if(x!=c){
-                    x.setBackgroundResource(R.drawable.choicesbg3)
+                    x.setBackgroundResource(R.drawable.answerchoicesbackground)
                     x.setTextColor(Color.rgb(0,0,0))
                 }
             }
@@ -148,7 +153,7 @@ class questionsFrag : Fragment(){
 
             for(x in ar){
                 if(x!=d){
-                    x.setBackgroundResource(R.drawable.choicesbg3)
+                    x.setBackgroundResource(R.drawable.answerchoicesbackground)
                     x.setTextColor(Color.rgb(0,0,0))
                 }
             }
@@ -162,7 +167,7 @@ class questionsFrag : Fragment(){
 
             for(x in ar){
                 if(x!=e){
-                    x.setBackgroundResource(R.drawable.choicesbg3)
+                    x.setBackgroundResource(R.drawable.answerchoicesbackground)
                     x.setTextColor(Color.rgb(0,0,0))
                 }
             }
@@ -171,16 +176,27 @@ class questionsFrag : Fragment(){
     }
     
     //create list questions based on topic
-    fun getTopicQuestions(topic:String?, list:ArrayList<QuestionObject>){
-        for (x in masterList){
-            if(x.category1.equals(topic) || x.category2.equals(topic) || x.category3.equals(topic)){
-                list.add(x)
-                Log.d(TAG, "Questions for: " + topic + ", question year: " + x.Year)
+    fun getQuestions(list:ArrayList<QuestionObject>, topic: String?): ArrayList<QuestionObject>{
+        var result: ArrayList<QuestionObject> = ArrayList<QuestionObject>()
+        for(x in list){
+            if(topic.equals(x.category1) || topic.equals(x.category2) || topic.equals(x.category3)){
+                result.add(x)
             }
         }
+        return result
     }
 
-    fun showQuiz(list:ArrayList<QuestionObject>){
+    fun startTest(list:ArrayList<QuestionObject>){
+        showQuestion(currentQuestion, list)
+    }
+
+    fun showQuestion(qn:Int, list:ArrayList<QuestionObject>){
+        a.setText(list.get(qn).answerA)
+        b.setText(list.get(qn).answerB)
+        c.setText(list.get(qn).answerC)
+        d.setText(list.get(qn).answerD)
+        e.setText(list.get(qn).answerE)
+
     }
 
 

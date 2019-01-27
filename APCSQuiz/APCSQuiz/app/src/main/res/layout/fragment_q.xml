@@ -17,6 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="5dp"
         android:src="@drawable/choicesbg2" />
+
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
@@ -28,7 +29,7 @@
         android:id="@+id/answersScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
         android:layout_below="@id/divider">
 
         <LinearLayout
