@@ -195,19 +195,52 @@ class questionsFrag : Fragment(){
     }
 
     fun startTest(list:ArrayList<QuestionObject>){
-        showQuestion(currentQuestion, list)
+        var modList = list
+        modList.shuffle()
+        showQuestion(currentQuestion, modList)
+        var selectedAnswer = ""
+        for(x in ar){
+            if(x.background.equals(R.drawable.answerselectedbackground)){
+                selectedAnswer = x.text.toString()
+                return
+            }
+        }
+        nextBtn.setOnClickListener{
+            //show result
+            if(modList.get(currentQuestion).correctAnswer.equals(selectedAnswer)){
+                ar.get(currentQuestion).setBackgroundResource(R.drawable.answercorrectbackground)
+            }else{
+                ar.get(currentQuestion).setBackgroundResource(R.drawable.answerwrongbackground)
+            }
+            //change nextBtn function to show next question
+            nextBtn.setOnClickListener{
+                if(currentQuestion < modList.size) {
+                    currentQuestion++
+                    showQuestion(currentQuestion,modList)
+                }
+            }
+
+        }
     }
 
     fun showQuestion(qn:Int, list:ArrayList<QuestionObject>){
-        var targetQuestion = list.get(qn)
-        var targetImage = Utils.getImage(targetQuestion.Question)
-        questionImage.setImageBitmap(targetImage)
+        //TODO: create a results fragment to show results
+        if(qn != list.size) {
+            a.requestFocus()
+            var targetQuestion = list.get(qn)
+            var targetImage = Utils.getImage(targetQuestion.Question)
+            questionImage.setImageBitmap(targetImage)
 
-        a.setText(targetQuestion.answerA)
-        b.setText(targetQuestion.answerB)
-        c.setText(targetQuestion.answerC)
-        d.setText(targetQuestion.answerD)
-        e.setText(targetQuestion.answerE)
+            a.setText(targetQuestion.answerA)
+            b.setText(targetQuestion.answerB)
+            c.setText(targetQuestion.answerC)
+            d.setText(targetQuestion.answerD)
+            e.setText(targetQuestion.answerE)
+            for(x in ar){
+                x.setBackgroundResource(R.drawable.answerchoicesbackground)
+                nextBtn.visibility = INVISIBLE
+            }
+        }
     }
 
 

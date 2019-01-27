@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:layout_margin="3dp">
+                android:layout_margin="5dp">
 
                 <Button
                     android:id="@+id/ab_expressions"
@@ -57,8 +57,8 @@
                     android:textStyle="bold"
                     android:drawableTop="@drawable/ic_algorithmicon"
                     android:text="Arithmetic and Boolean Expressions"
-                    android:elevation="10dp"
-                    android:layout_margin="3dp"/>
+                    android:elevation="15dp"
+                    android:layout_margin="5dp"/>
 
                 <Button
                     android:id="@+id/loops"
@@ -70,8 +70,8 @@
                     android:textStyle="bold"
                     android:drawableTop="@drawable/ic_loopicon"
                     android:text="Loops"
-                    android:elevation="10dp"
-                    android:layout_margin="3dp"
+                    android:elevation="15dp"
+                    android:layout_margin="5dp"
                     />
 
                 <Button
@@ -84,8 +84,8 @@
                     android:textStyle="bold"
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_arrayicon"
-                    android:elevation="10dp"
-                    android:layout_margin="3dp"
+                    android:elevation="15dp"
+                    android:layout_margin="5dp"
                     />
 
                 <Button
@@ -98,8 +98,8 @@
                     android:textStyle="bold"
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_arraylist"
-                    android:elevation="10dp"
-                    android:layout_margin="3dp"
+                    android:elevation="15dp"
+                    android:layout_margin="5dp"
                     />
 
                 <Button
@@ -112,8 +112,8 @@
                     android:textStyle="bold"
                     android:text="Strings"
                     android:fontFamily="monospace"
-                    android:elevation="10dp"
-                    android:layout_margin="3dp"
+                    android:elevation="15dp"
+                    android:layout_margin="5dp"
                     />
 
                 <Button
@@ -126,8 +126,8 @@
                     android:text="Classes, Interfaces, Inheritance, Polymorphism "
                     android:drawableTop="@drawable/ic_inheritance"
                     android:fontFamily="monospace"
-                    android:elevation="10dp"
-                    android:layout_margin="3dp"
+                    android:elevation="15dp"
+                    android:layout_margin="5dp"
                     />
 
                 <Button
@@ -140,8 +140,8 @@
                     android:text="Fields, Methods and Parameter Passing "
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_parametersicon"
-                    android:elevation="10dp"
-                    android:layout_margin="3dp"
+                    android:elevation="15dp"
+                    android:layout_margin="5dp"
                     />
 
                 <Button
@@ -154,8 +154,8 @@
                     android:textStyle="bold"
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_recursionicon"
-                    android:elevation="10dp"
-                    android:layout_margin="3dp"
+                    android:elevation="15dp"
+                    android:layout_margin="5dp"
                     />
 
                 <Button
@@ -168,7 +168,7 @@
                     android:textStyle="bold"
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_bigoicon"
-                    android:layout_margin="3dp"
+                    android:layout_margin="5dp"
                     />
 
                 <Button
@@ -181,8 +181,8 @@
                     android:textStyle="bold"
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_sortingicon"
-                    android:elevation="10dp"
-                    android:layout_margin="3dp"
+                    android:elevation="15dp"
+                    android:layout_margin="5dp"
                     />
             </LinearLayout>
 
