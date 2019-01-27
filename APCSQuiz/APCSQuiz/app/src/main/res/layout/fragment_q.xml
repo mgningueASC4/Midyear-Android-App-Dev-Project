@@ -5,75 +5,95 @@
     android:id="@+id/questionFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/qsactivityanimator"
+    android:background="@android:color/white"
     tools:context=".questionsFrag">
 
-    <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:id="@+id/textView"
+    <ImageView
+        android:id="@+id/questionImageView"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="85dp"
-        android:background="@drawable/choicesbg3"
-        android:paddingTop="5dp"
-        android:text="@string/e"
-        android:textAlignment="center" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/choicesbg2" />
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@+id/questionImageView"
+        android:background="@android:color/black"/>
 
-    <TextView
-        android:id="@+id/textView8"
+    <ScrollView
+        android:id="@+id/answersScrollView"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="234dp"
-        android:background="@drawable/choicesbg3"
-        android:paddingTop="5dp"
-        android:text="@string/b"
-        android:textAlignment="center" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_below="@id/divider">
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="135dp"
-        android:background="@drawable/choicesbg3"
-        android:paddingTop="5dp"
-        android:text="@string/d"
-        android:textAlignment="center" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="185dp"
-        android:background="@drawable/choicesbg3"
-        android:paddingTop="5dp"
-        android:text="@string/c"
-        android:textAlignment="center" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/choiceA"
+                android:background="@drawable/answerchoicesbackground"
+                android:text="A"
+                android:fontFamily="sans-serif-condensed"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"/>
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="282dp"
-        android:background="@drawable/choicesbg3"
-        android:paddingTop="5dp"
-        android:text="@string/a"
-        android:textAlignment="center" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/choiceB"
+                android:background="@drawable/answerchoicesbackground"
+                android:text="B"
+                android:fontFamily="sans-serif-condensed"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/choiceC"
+                android:background="@drawable/answerchoicesbackground"
+                android:text="C"
+                android:fontFamily="sans-serif-condensed"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/choiceD"
+                android:background="@drawable/answerchoicesbackground"
+                android:text="D"
+                android:fontFamily="sans-serif-condensed"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/choiceE"
+                android:background="@drawable/answerchoicesbackground"
+                android:text="E"
+                android:fontFamily="sans-serif-condensed"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"/>
+
+        </LinearLayout>
+    </ScrollView>
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView"
@@ -85,14 +105,5 @@
         android:layout_marginBottom="8dp"
         android:src="@drawable/betternextbtn"
         android:visibility="invisible" />
-
-    <ImageView
-        android:id="@+id/questionImageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/choicesbg2" />
 
 </RelativeLayout>

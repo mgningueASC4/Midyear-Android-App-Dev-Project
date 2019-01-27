@@ -17,6 +17,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.example.imtia.apcsquiz.DBHandlers.DBHelper
 import com.example.imtia.apcsquiz.Main2Activity
+import kotlinx.android.synthetic.main.fragment_q.*
 
 import java.util.*
 import kotlin.collections.ArrayList
@@ -25,12 +26,12 @@ import kotlin.collections.ArrayList
 class questionsFrag : Fragment(){
     //widgets
     private val TAG = "questionFrag"
-    lateinit var t1: TextView
-    lateinit var t2: TextView
-    lateinit var t3: TextView
-    lateinit var t4: TextView
-    lateinit var t5: TextView
-    lateinit var btn: ImageView
+    lateinit var a: TextView
+    lateinit var b: TextView
+    lateinit var c: TextView
+    lateinit var d: TextView
+    lateinit var e: TextView
+    lateinit var nextBtn: ImageView
     lateinit var questionImage: ImageView
 
     var mContext = this.activity
@@ -72,41 +73,38 @@ class questionsFrag : Fragment(){
 
         //create list of questions according to topic selected
         getTopicQuestions(topic, topicQuestions)
-        //start actions
-        btnFunction()
         return v
     }
 
     //method to initialize answer buttons
     fun initButtons(v:View){
-        t1 = v.findViewById<TextView>(R.id.textView4)
-        t2 = v.findViewById<TextView>(R.id.textView8)
-        t3 = v.findViewById<TextView>(R.id.textView9)
-        t4 = v.findViewById<TextView>(R.id.textView10)
-        t5 = v.findViewById<TextView>(R.id.textView)
-        val screenbg = v.findViewById<RelativeLayout>(R.id.questionFragment)
-        val a:AnimationDrawable = screenbg.background as AnimationDrawable
-        a.setEnterFadeDuration(3000)
-        a.setExitFadeDuration(3000)
-        a.start()
-        ar.add(0, t1)
-        ar.add(1, t2)
-        ar.add(2, t3)
-        ar.add(3, t4)
-        ar.add(4,t5)
+        a = v.findViewById(R.id.choiceA) as TextView
+        b = v.findViewById(R.id.choiceB) as TextView
+        c = v.findViewById(R.id.choiceC) as TextView
+        d = v.findViewById(R.id.choiceD) as TextView
+        e = v.findViewById(R.id.choiceE) as TextView
+        
+        
+        ar.add(0, a)
+        ar.add(1, b)
+        ar.add(2, c)
+        ar.add(3, d)
+        ar.add(4, e)
 
-        btn = v.findViewById(R.id.gifImageView) as ImageView
+        nextBtn = v.findViewById(R.id.gifImageView) as ImageView
         questionImage = v.findViewById(R.id.questionImageView) as ImageView
+
+        answerSelection()
     }
     //add function to answer buttons
-    fun btnFunction(){
-        t1.setOnClickListener {
-            t1.setBackgroundColor(Color.rgb(0,0,0))
-            t1.setTextColor(Color.rgb(255,255,255))
-            btn.visibility = VISIBLE
+    fun answerSelection(){
+        a.setOnClickListener {
+            a.setBackgroundResource(R.drawable.answerselectedbackground)
+            a.setTextColor(Color.rgb(0,0,0))
+            nextBtn.visibility = VISIBLE
 
             for(x in ar){
-               if(x!=t1){
+               if(x!=a){
                    x.setBackgroundResource(R.drawable.choicesbg3)
                    x.setTextColor(Color.rgb(0,0,0))
                }
@@ -114,13 +112,13 @@ class questionsFrag : Fragment(){
 
         }
 
-        t2.setOnClickListener {
-            t2.setBackgroundColor(Color.rgb(0,0,0))
-            t2.setTextColor(Color.rgb(255,255,255))
-            btn.visibility = VISIBLE
+        b.setOnClickListener {
+            b.setBackgroundResource(R.drawable.answerselectedbackground)
+            b.setTextColor(Color.rgb(0,0,0))
+            nextBtn.visibility = VISIBLE
 
             for(x in ar){
-                if(x!=t2){
+                if(x!=b){
                     x.setBackgroundResource(R.drawable.choicesbg3)
                     x.setTextColor(Color.rgb(0,0,0))
                 }
@@ -128,13 +126,13 @@ class questionsFrag : Fragment(){
 
         }
 
-        t3.setOnClickListener {
-            t3.setBackgroundColor(Color.rgb(0,0,0))
-            t3.setTextColor(Color.rgb(255,255,255))
-            btn.visibility = VISIBLE
+        c.setOnClickListener {
+            c.setBackgroundResource(R.drawable.answerselectedbackground)
+            c.setTextColor(Color.rgb(0,0,0))
+            nextBtn.visibility = VISIBLE
 
             for(x in ar){
-                if(x!=t3){
+                if(x!=c){
                     x.setBackgroundResource(R.drawable.choicesbg3)
                     x.setTextColor(Color.rgb(0,0,0))
                 }
@@ -143,13 +141,13 @@ class questionsFrag : Fragment(){
 
         }
 
-        t4.setOnClickListener {
-            t4.setBackgroundColor(Color.rgb(0,0,0))
-            t4.setTextColor(Color.rgb(255,255,255))
-            btn.visibility = VISIBLE
+        d.setOnClickListener {
+            d.setBackgroundResource(R.drawable.answerselectedbackground)
+            d.setTextColor(Color.rgb(0,0,0))
+            nextBtn.visibility = VISIBLE
 
             for(x in ar){
-                if(x!=t4){
+                if(x!=d){
                     x.setBackgroundResource(R.drawable.choicesbg3)
                     x.setTextColor(Color.rgb(0,0,0))
                 }
@@ -157,13 +155,13 @@ class questionsFrag : Fragment(){
         }
 
 
-        t5.setOnClickListener {
-            t5.setBackgroundColor(Color.rgb(0,0,0))
-            t5.setTextColor(Color.rgb(255,255,255))
-            btn.visibility = VISIBLE
+        e.setOnClickListener {
+            e.setBackgroundResource(R.drawable.answerselectedbackground)
+            e.setTextColor(Color.rgb(0,0,0))
+            nextBtn.visibility = VISIBLE
 
             for(x in ar){
-                if(x!=t5){
+                if(x!=e){
                     x.setBackgroundResource(R.drawable.choicesbg3)
                     x.setTextColor(Color.rgb(0,0,0))
                 }
@@ -171,6 +169,7 @@ class questionsFrag : Fragment(){
 
         }
     }
+    
     //create list questions based on topic
     fun getTopicQuestions(topic:String?, list:ArrayList<QuestionObject>){
         for (x in masterList){

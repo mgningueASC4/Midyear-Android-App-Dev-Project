@@ -50,24 +50,27 @@
                     android:id="@+id/ab_expressions"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:background="@color/red"
+                    android:shadowRadius="5"
                     android:textColor="#000"
                     android:fontFamily="monospace"
                     android:textStyle="bold"
                     android:drawableTop="@drawable/ic_algorithmicon"
                     android:text="Algorithm and Boolean Expressions"
-                    android:elevation="20dp"
+                    android:elevation="10dp"
                     android:layout_margin="3dp"/>
 
                 <Button
                     android:id="@+id/loops"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:background="@color/orange"
                     android:fontFamily="monospace"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:drawableTop="@drawable/ic_loopicon"
                     android:text="Loops"
-                    android:elevation="20dp"
+                    android:elevation="10dp"
                     android:layout_margin="3dp"
                     />
 
@@ -75,12 +78,13 @@
                     android:id="@+id/arrays"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:background="@color/green"
                     android:text="Arrays"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_arrayicon"
-                    android:elevation="20dp"
+                    android:elevation="10dp"
                     android:layout_margin="3dp"
                     />
 
@@ -88,12 +92,13 @@
                     android:id="@+id/arraylists"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:background="@color/teal"
                     android:text="Arraylists"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_arraylist"
-                    android:elevation="20dp"
+                    android:elevation="10dp"
                     android:layout_margin="3dp"
                     />
 
@@ -101,12 +106,13 @@
                     android:id="@+id/strings"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:background="@color/blue"
                     android:textColor="#000"
                     android:drawableTop="@drawable/ic_stringsicon"
                     android:textStyle="bold"
                     android:text="Strings"
                     android:fontFamily="monospace"
-                    android:elevation="20dp"
+                    android:elevation="10dp"
                     android:layout_margin="3dp"
                     />
 
@@ -114,12 +120,13 @@
                     android:id="@+id/class_interface_inheritance_polymorphism"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:background="@color/darkBlue"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:text="Classes, Interfaces, Inheritance, Polymorphism"
                     android:drawableTop="@drawable/ic_inheritance"
                     android:fontFamily="monospace"
-                    android:elevation="20dp"
+                    android:elevation="10dp"
                     android:layout_margin="3dp"
                     />
 
@@ -127,12 +134,13 @@
                     android:id="@+id/fields_methods_prameter"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:background="@color/purple"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:text="Fields, Methods and Parameter Passing"
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_parametersicon"
-                    android:elevation="20dp"
+                    android:elevation="10dp"
                     android:layout_margin="3dp"
                     />
 
@@ -140,12 +148,13 @@
                     android:id="@+id/recursion"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:background="@color/pink"
                     android:text="Recursion"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_recursionicon"
-                    android:elevation="20dp"
+                    android:elevation="10dp"
                     android:layout_margin="3dp"
                     />
 
@@ -153,6 +162,7 @@
                     android:id="@+id/big_o"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:background="@color/red"
                     android:text="Algorithms and Big O"
                     android:textColor="#000"
                     android:textStyle="bold"
@@ -165,12 +175,13 @@
                     android:id="@+id/searchSort"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:background="@color/orange"
                     android:text="Searching and Sorting"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:fontFamily="monospace"
                     android:drawableTop="@drawable/ic_sortingicon"
-                    android:elevation="20dp"
+                    android:elevation="10dp"
                     android:layout_margin="3dp"
                     />
             </LinearLayout>

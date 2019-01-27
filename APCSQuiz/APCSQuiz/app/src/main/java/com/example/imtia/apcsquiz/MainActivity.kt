@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import android.widget.Toast.*
 import com.example.imtia.apcsquiz.R.layout.activity_main2
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var bigOBtn: Button
     lateinit var searchSortBtn: Button
     lateinit var scrollView: ScrollView
+    var originalBtnHeight = 0
+    var originalBtnWidth = 0
     var btnList : ArrayList<Button>  = ArrayList<Button>()
     lateinit var cardFlip: MediaPlayer
 
@@ -57,6 +60,9 @@ class MainActivity : AppCompatActivity() {
         bigOBtn = big_o
         searchSortBtn = searchSort
 
+        originalBtnHeight = algorithmBtn.layoutParams.height
+        originalBtnWidth = algorithmBtn.layoutParams.width
+
         btnList.add(algorithmBtn)
         btnList.add(algorithmBtn)
         btnList.add(loopBtn)
@@ -78,19 +84,6 @@ class MainActivity : AppCompatActivity() {
                 menuBtnAction(v, t, cardFlip)
             }
 
-            x.setOnTouchListener{v, event ->
-                if(event.action == MotionEvent.ACTION_DOWN){
-                    //x.setLayoutParams(LinearLayout.LayoutParams(x.width+20, x.height+20))
-                    //x.setElevation(x.elevation+10)
-                    true
-                }
-                if(event.action == MotionEvent.ACTION_UP){
-                    //x.setLayoutParams(LinearLayout.LayoutParams(x.width-20, x.height-20))
-                    //x.setElevation(x.elevation-10)
-                    true
-                }
-                false
-            }
             /*
             var a: AnimationDrawable = x.background as AnimationDrawable
             a.setEnterFadeDuration(3000)
