@@ -14,12 +14,12 @@
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:wlv_borderColor="@color/colorAccent"
+        app:wlv_borderColor="#00ffe1"
         app:wlv_borderWidth="3dp"
         app:wlv_shapeType="circle"
         app:wlv_round_rectangle="true"
         app:wlv_triangle_direction="north"
-        app:wlv_wave_background_Color="@color/darkBlue"
+        app:wlv_wave_background_Color="#4f8283"
         app:wlv_titleCenterStrokeColor="@color/blue"
         app:wlv_titleCenterStrokeWidth="3dp"
         app:wlv_titleCenterColor="@android:color/white"
@@ -36,7 +36,7 @@
         app:wlv_titleBottomSize="25sp"
 
         app:wlv_waveAmplitude="70"
-        app:wlv_waveColor="@color/colorAccent"
+        app:wlv_waveColor="#0040ff"
         />
 
     <TextView

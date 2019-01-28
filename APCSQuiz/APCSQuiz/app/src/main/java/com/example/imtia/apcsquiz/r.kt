@@ -49,7 +49,7 @@ class r : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        pc = view?.findViewById<PieChart>(R.id.resultChart)
+        //pc = view?.findViewById<PieChart>(R.id.resultChart)
 
         pc?.setRotationEnabled(true)
         data(pc)
