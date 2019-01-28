@@ -8,23 +8,14 @@
     android:background="@android:color/white"
     tools:context=".questionsFrag">
 
-    <TextView
-        android:id="@+id/questionNumberText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:text="#0/0"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:textColor="@android:color/black"
-        android:background="@drawable/answerchoicesbackground"
-        />
+
+
     <ImageView
         android:id="@+id/questionImageView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_below="@+id/questionNumberText"
+        android:layout_height="250dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="5dp"
         android:src="@drawable/choicesbg2" />
 
@@ -44,7 +35,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/answerPannel"
             android:orientation="vertical"
             >
@@ -55,10 +46,12 @@
                 android:id="@+id/choiceA"
                 android:background="@drawable/answerchoicesbackground"
                 android:text="A"
+                android:layout_gravity="left"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
                 android:fontFamily="sans-serif-condensed"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
-                android:gravity="center_vertical"
                 android:layout_marginBottom="5dp"
                 android:focusable="true"
                 android:focusableInTouchMode="true"/>
@@ -72,8 +65,9 @@
                 android:fontFamily="sans-serif-condensed"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
+                android:layout_gravity="left"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="5dp"
+                android:paddingLeft="20dp"                android:layout_marginBottom="5dp"
                 />
 
             <TextView
@@ -85,8 +79,9 @@
                 android:fontFamily="sans-serif-condensed"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
+                android:layout_gravity="left"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="5dp"/>
+                android:paddingLeft="20dp"                android:layout_marginBottom="5dp"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -97,8 +92,9 @@
                 android:fontFamily="sans-serif-condensed"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
+                android:layout_gravity="left"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="5dp"/>
+                android:paddingLeft="20dp"                android:layout_marginBottom="5dp"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -109,8 +105,9 @@
                 android:fontFamily="sans-serif-condensed"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
+                android:layout_gravity="left"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="5dp"/>
+                android:paddingLeft="20dp"                android:layout_marginBottom="5dp"/>
 
             <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/gifImageView"
