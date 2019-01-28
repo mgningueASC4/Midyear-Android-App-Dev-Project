@@ -84,12 +84,12 @@ class MainActivity : AppCompatActivity() {
                 menuBtnAction(v, t, cardFlip)
             }
 
-            /*
+
             var a: AnimationDrawable = x.background as AnimationDrawable
-            a.setEnterFadeDuration(3000)
-            a.setExitFadeDuration(3000)
+            a.setEnterFadeDuration(1500)
+            a.setExitFadeDuration(1500)
             a.start()
-            */
+
         }
 
         initScrollListener(scrollView, cardFlip)
