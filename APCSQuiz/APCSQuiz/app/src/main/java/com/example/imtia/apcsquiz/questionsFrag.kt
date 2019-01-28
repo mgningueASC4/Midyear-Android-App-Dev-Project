@@ -152,7 +152,7 @@ class questionsFrag : Fragment(){
                 nextBtn.visibility = VISIBLE
                 nextBtn.requestFocus()
             } else {
-                    
+
                 }
         }
     }
