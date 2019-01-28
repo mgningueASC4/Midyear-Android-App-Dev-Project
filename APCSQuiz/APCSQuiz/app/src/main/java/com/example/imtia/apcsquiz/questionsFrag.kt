@@ -37,6 +37,7 @@ class questionsFrag : Fragment(){
     lateinit var panelScrollView: ScrollView
     lateinit var answerPanel: LinearLayout
     lateinit var  divider: View
+    lateinit var questionTitle: TextView
 
     var mContext = this.activity
 
@@ -44,7 +45,7 @@ class questionsFrag : Fragment(){
     var ar:ArrayList<TextView> = ArrayList<TextView>()
     var masterList:ArrayList<QuestionObject> = ArrayList<QuestionObject>()
     var topicQuestions:ArrayList<QuestionObject> = ArrayList<QuestionObject>()
-    var numberOfQuestions = 0
+
     //the number in index
     var currentQuestion = 0
     lateinit var currentQuestionShown: QuestionObject
@@ -53,8 +54,10 @@ class questionsFrag : Fragment(){
     lateinit var dbHelper: DBHelper
     private var listener: OnFragmentInteractionListener? = null
 
-    //topic of questions
+    //topic of questions, questions correct, questions wrong
     private var topic: String ?= null
+    var numberCorrect = 0
+    var numberOfQuestions = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,6 +98,7 @@ class questionsFrag : Fragment(){
         c = v.findViewById(R.id.choiceC) as TextView
         d = v.findViewById(R.id.choiceD) as TextView
         e = v.findViewById(R.id.choiceE) as TextView
+        questionTitle = v.findViewById(R.id.questionNumberText) as TextView
         divider = v.findViewById(R.id.divider) as View
         panelScrollView = v.findViewById(R.id.answersScrollView) as ScrollView
         answerPanel = v.findViewById(R.id.answerPannel) as LinearLayout
@@ -107,8 +111,6 @@ class questionsFrag : Fragment(){
 
         nextBtn = v.findViewById(R.id.gifImageView) as ImageView
         questionImage = v.findViewById(R.id.questionImageView) as ImageView
-
-        //answerSelection()
     }
 
     //add function to answer buttons
@@ -138,6 +140,7 @@ class questionsFrag : Fragment(){
                 if (chosenAnswer.equals(currentQuestionShown.correctAnswer)) {
                     chosen.setBackgroundResource(R.drawable.answercorrectbackground)
                     divider.setBackgroundColor(Color.rgb(0, 255, 0))
+                    numberCorrect++
                 } else {
                     divider.setBackgroundColor(Color.rgb(255, 0, 0))
                     for (x in ar) {
@@ -149,7 +152,7 @@ class questionsFrag : Fragment(){
                 nextBtn.visibility = VISIBLE
                 nextBtn.requestFocus()
             } else {
-                    Toast.makeText(this.context, "Already picked an answer, move on fool", Toast.LENGTH_SHORT).show()
+                    
                 }
         }
     }
@@ -170,6 +173,9 @@ class questionsFrag : Fragment(){
         modList.shuffle()
 
         //0th, i.e, first question in list is showns
+        var textTitle = "#" + (currentQuestion+1) + "/" + numberOfQuestions
+        questionTitle.setText(textTitle)
+
         showQuestion(currentQuestion, modList)
         currentQuestionShown = modList.get(currentQuestion)
         answerSelection()
@@ -177,8 +183,13 @@ class questionsFrag : Fragment(){
         //everytime nextbutton is clicked, the next question is shown
         nextBtn.setOnClickListener{
             divider.setBackgroundColor(0)
-            if(currentQuestion < modList.size) {
+            if(currentQuestion < modList.size-1) {
+
                 currentQuestion++
+
+                var textTitle = "#" + (currentQuestion+1) + "/" + numberOfQuestions
+                questionTitle.setText(textTitle)
+
                 showQuestion(currentQuestion,modList)
                 currentQuestionShown = modList.get(currentQuestion)
             }
