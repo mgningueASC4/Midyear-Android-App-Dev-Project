@@ -3,15 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".r">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context= ".resultsFrag">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/resultChart"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_centerVertical="true"></com.github.mikephil.charting.charts.PieChart>
+    <me.itangqi.waveloadingview.WaveLoadingView
+        android:id="@+id/waveLoadingView"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:wlv_borderColor="@color/colorAccent"
+        app:wlv_borderWidth="3dp"
+        app:wlv_shapeType="circle"
+        app:wlv_round_rectangle="true"
+        app:wlv_triangle_direction="north"
+        app:wlv_wave_background_Color="@color/darkBlue"
+        app:wlv_titleCenterStrokeColor="@color/blue"
+        app:wlv_titleCenterStrokeWidth="3dp"
+        app:wlv_titleCenterColor="@android:color/white"
+        app:wlv_titleCenterSize="25sp"
+
+        app:wlv_titleTopStrokeColor="@color/blue"
+        app:wlv_titleTopStrokeWidth="3dp"
+        app:wlv_titleTopColor="@android:color/white"
+        app:wlv_titleTopSize="25sp"
+
+        app:wlv_titleBottomStrokeColor="@color/blue"
+        app:wlv_titleBottomStrokeWidth="3dp"
+        app:wlv_titleBottomColor="@android:color/white"
+        app:wlv_titleBottomSize="25sp"
+
+        app:wlv_waveAmplitude="70"
+        app:wlv_waveColor="@color/colorAccent"
+        />
 
     <TextView
         android:id="@+id/textView2"
@@ -19,11 +45,20 @@
         android:layout_height="45dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="67dp"
+        android:layout_marginTop="10dp"
         android:paddingTop="10dp"
         android:text="Result Overview"
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="18dp"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="9dp"
+        android:src="@drawable/exitbtn" />
 </RelativeLayout>

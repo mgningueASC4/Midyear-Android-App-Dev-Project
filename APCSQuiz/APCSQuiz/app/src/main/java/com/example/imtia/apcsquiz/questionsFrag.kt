@@ -3,11 +3,13 @@ package com.example.imtia.apcsquiz
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.support.v7.app.AppCompatActivity
 import android.graphics.drawable.AnimationDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Vibrator
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +19,7 @@ import android.widget.*
 import com.example.imtia.apcsquiz.DBHandlers.DBHelper
 import com.example.imtia.apcsquiz.Main2Activity
 import com.example.imtia.apcsquiz.Utils.Utils
+import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.fragment_q.*
 import org.w3c.dom.Text
 
@@ -58,6 +61,7 @@ class questionsFrag : Fragment(){
     private var topic: String ?= null
     var numberCorrect = 0
     var numberOfQuestions = 0
+    var perCorrect:Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -182,6 +186,16 @@ class questionsFrag : Fragment(){
 
         //everytime nextbutton is clicked, the next question is shown
         nextBtn.setOnClickListener{
+            if(currentQuestion == modList.size-1){
+                perCorrect = ((numberCorrect/numberOfQuestions.toDouble())*1000).toInt()/100.0
+                val bundle = Bundle()
+                bundle.putString("Correct", perCorrect.toString())
+                val resultsFragment = resultsFrag()
+                resultsFragment.arguments = bundle
+                val fm:FragmentTransaction = fragmentManager!!.beginTransaction()
+                fm.replace(R.id.fragmentHolder, resultsFragment)
+                fm.commit()
+            }
             divider.setBackgroundColor(0)
             if(currentQuestion < modList.size-1) {
 
