@@ -18,6 +18,7 @@ import com.example.imtia.apcsquiz.DBHandlers.DBHelper
 import com.example.imtia.apcsquiz.Main2Activity
 import com.example.imtia.apcsquiz.Utils.Utils
 import kotlinx.android.synthetic.main.fragment_q.*
+import org.w3c.dom.Text
 
 import java.util.*
 import kotlin.collections.ArrayList
@@ -35,6 +36,7 @@ class questionsFrag : Fragment(){
     lateinit var questionImage: ImageView
     lateinit var panelScrollView: ScrollView
     lateinit var answerPanel: LinearLayout
+    lateinit var  divider: View
 
     var mContext = this.activity
 
@@ -43,7 +45,9 @@ class questionsFrag : Fragment(){
     var masterList:ArrayList<QuestionObject> = ArrayList<QuestionObject>()
     var topicQuestions:ArrayList<QuestionObject> = ArrayList<QuestionObject>()
     var numberOfQuestions = 0
+    //the number in index
     var currentQuestion = 0
+    lateinit var currentQuestionShown: QuestionObject
 
     //database handling
     lateinit var dbHelper: DBHelper
@@ -62,15 +66,14 @@ class questionsFrag : Fragment(){
         val v:View = inflater.inflate(R.layout.fragment_q, container, false)
         inflater.inflate(R.layout.fragment_q, container, false)
         Log.d(TAG, "question frag view inflated")
+
         //implement widgetes
         initButtons(v)
-
 
         //retrieve topic
         val args : Bundle ?= arguments
         topic = args?.getString("TOPIC")
         Log.d(TAG, "Topic selected: " + topic)
-
 
         //create database
         dbHelper = DBHelper(v.context)
@@ -78,6 +81,8 @@ class questionsFrag : Fragment(){
         masterList = dbHelper.getAllQuestions()
         topicQuestions = getQuestions(masterList, topic)
         numberOfQuestions = topicQuestions.size
+
+        //start test
         startTest(topicQuestions)
 
         return v
@@ -90,6 +95,7 @@ class questionsFrag : Fragment(){
         c = v.findViewById(R.id.choiceC) as TextView
         d = v.findViewById(R.id.choiceD) as TextView
         e = v.findViewById(R.id.choiceE) as TextView
+        divider = v.findViewById(R.id.divider) as View
         panelScrollView = v.findViewById(R.id.answersScrollView) as ScrollView
         answerPanel = v.findViewById(R.id.answerPannel) as LinearLayout
         
@@ -102,84 +108,49 @@ class questionsFrag : Fragment(){
         nextBtn = v.findViewById(R.id.gifImageView) as ImageView
         questionImage = v.findViewById(R.id.questionImageView) as ImageView
 
-        answerSelection()
+        //answerSelection()
     }
+
     //add function to answer buttons
+    //answerSelection() called in startTest()
     fun answerSelection(){
-        a.setOnClickListener {
-            a.setBackgroundResource(R.drawable.answerselectedbackground)
-            a.setTextColor(Color.rgb(0,0,0))
-            nextBtn.visibility = VISIBLE
-            nextBtn.requestFocus()
-
-            for(x in ar){
-               if(x!=a){
-                   x.setBackgroundResource(R.drawable.answerchoicesbackground)
-                   x.setTextColor(Color.rgb(0,0,0))
-               }
-            }
-
+        for (x in ar){
+            answerSelectedMethod(x)
         }
-
-        b.setOnClickListener {
-            b.setBackgroundResource(R.drawable.answerselectedbackground)
-            b.setTextColor(Color.rgb(0,0,0))
-            nextBtn.visibility = VISIBLE
-            nextBtn.requestFocus()
-
-            for(x in ar){
-                if(x!=b){
-                    x.setBackgroundResource(R.drawable.answerchoicesbackground)
-                    x.setTextColor(Color.rgb(0,0,0))
+    }
+    //when an answer is clicked the bar will light up red if answered incorrect and green if correct
+    //if wrong, the correct answer will be highlighted green
+    fun answerSelectedMethod(chosen:TextView){
+            chosen.setOnClickListener {
+                if(nextBtn.visibility == INVISIBLE){
+                chosen.setBackgroundResource(R.drawable.answerselectedbackground)
+                chosen.setTextColor(Color.rgb(0, 0, 0))
+                for (x in ar) {
+                    if (x != chosen) {
+                        x.setBackgroundResource(R.drawable.answerchoicesbackground)
+                        x.setTextColor(Color.rgb(0, 0, 0))
+                    }
                 }
-            }
 
-        }
-
-        c.setOnClickListener {
-            c.setBackgroundResource(R.drawable.answerselectedbackground)
-            c.setTextColor(Color.rgb(0,0,0))
-            nextBtn.visibility = VISIBLE
-            nextBtn.requestFocus()
-
-            for(x in ar){
-                if(x!=c){
-                    x.setBackgroundResource(R.drawable.answerchoicesbackground)
-                    x.setTextColor(Color.rgb(0,0,0))
+                var chosenAnswer = chosen.text?.substring(1, 2)
+                Log.d("ANSWERING", "CHOSEN ANSWER: " + chosenAnswer)
+                Log.d("ANSWERING", "CORRECT ANSWER: " + currentQuestionShown.correctAnswer)
+                if (chosenAnswer.equals(currentQuestionShown.correctAnswer)) {
+                    chosen.setBackgroundResource(R.drawable.answercorrectbackground)
+                    divider.setBackgroundColor(Color.rgb(0, 255, 0))
+                } else {
+                    divider.setBackgroundColor(Color.rgb(255, 0, 0))
+                    for (x in ar) {
+                        if (x.text?.substring(1, 2).equals(currentQuestionShown.correctAnswer)) {
+                            x.setBackgroundResource(R.drawable.answercorrectbackground)
+                        }
+                    }
                 }
-            }
-
-
-        }
-
-        d.setOnClickListener {
-            d.setBackgroundResource(R.drawable.answerselectedbackground)
-            d.setTextColor(Color.rgb(0,0,0))
-            nextBtn.visibility = VISIBLE
-            nextBtn.requestFocus()
-
-            for(x in ar){
-                if(x!=d){
-                    x.setBackgroundResource(R.drawable.answerchoicesbackground)
-                    x.setTextColor(Color.rgb(0,0,0))
+                nextBtn.visibility = VISIBLE
+                nextBtn.requestFocus()
+            } else {
+                    Toast.makeText(this.context, "Already picked an answer, move on fool", Toast.LENGTH_SHORT).show()
                 }
-            }
-        }
-
-
-        e.setOnClickListener {
-            e.setBackgroundResource(R.drawable.answerselectedbackground)
-            e.setTextColor(Color.rgb(0,0,0))
-            nextBtn.visibility = VISIBLE
-            nextBtn.requestFocus()
-
-            for(x in ar){
-                if(x!=e){
-                    x.setBackgroundResource(R.drawable.answerchoicesbackground)
-                    x.setTextColor(Color.rgb(0,0,0))
-                }
-            }
-
         }
     }
     
@@ -197,29 +168,20 @@ class questionsFrag : Fragment(){
     fun startTest(list:ArrayList<QuestionObject>){
         var modList = list
         modList.shuffle()
-        showQuestion(currentQuestion, modList)
-        var selectedAnswer = ""
-        for(x in ar){
-            if(x.background.equals(R.drawable.answerselectedbackground)){
-                selectedAnswer = x.text.toString()
-                return
-            }
-        }
-        nextBtn.setOnClickListener{
-            //show result
-            if(modList.get(currentQuestion).correctAnswer.equals(selectedAnswer)){
-                ar.get(currentQuestion).setBackgroundResource(R.drawable.answercorrectbackground)
-            }else{
-                ar.get(currentQuestion).setBackgroundResource(R.drawable.answerwrongbackground)
-            }
-            //change nextBtn function to show next question
-            nextBtn.setOnClickListener{
-                if(currentQuestion < modList.size) {
-                    currentQuestion++
-                    showQuestion(currentQuestion,modList)
-                }
-            }
 
+        //0th, i.e, first question in list is showns
+        showQuestion(currentQuestion, modList)
+        currentQuestionShown = modList.get(currentQuestion)
+        answerSelection()
+
+        //everytime nextbutton is clicked, the next question is shown
+        nextBtn.setOnClickListener{
+            divider.setBackgroundColor(0)
+            if(currentQuestion < modList.size) {
+                currentQuestion++
+                showQuestion(currentQuestion,modList)
+                currentQuestionShown = modList.get(currentQuestion)
+            }
         }
     }
 
@@ -236,10 +198,11 @@ class questionsFrag : Fragment(){
             c.setText(targetQuestion.answerC)
             d.setText(targetQuestion.answerD)
             e.setText(targetQuestion.answerE)
+
             for(x in ar){
                 x.setBackgroundResource(R.drawable.answerchoicesbackground)
-                nextBtn.visibility = INVISIBLE
             }
+            nextBtn.visibility = INVISIBLE
         }
     }
 
