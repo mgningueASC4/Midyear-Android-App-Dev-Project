@@ -64,8 +64,8 @@ public class questionsFrag : Fragment(){
     var numberOfQuestions = 0
     var perCorrect:Double = 0.0
 
-    lateinit var q2:ImageView
-    lateinit var SGD: ScaleGestureDetector
+
+    lateinit var SGD: MyOnScaleGestureListener
     lateinit var matrix:Matrix
     lateinit var mContext:Context
 
@@ -73,24 +73,6 @@ public class questionsFrag : Fragment(){
         super.onCreate(savedInstanceState)
     }
 
-    private inner class ScaleListener:ScaleGestureDetector.SimpleOnScaleGestureListener(){
-
-        override fun onScale(detector: ScaleGestureDetector):Boolean{
-            /*var sc:Float = detector.scaleFactor
-           sc = sc * detector.scaleFactor
-            sc = Math.max(0.1f, Math.min(sc, 5f))
-            matrix.setScale(1.3f,.4f)
-            q2.setImageMatrix(matrix)*/
-            //val params = q2.getLayoutParams() as ViewGroup.LayoutParams
-            //params.height = 500
-            return true
-        }
-    }
-
-      fun onTouchEvent(event: MotionEvent):Boolean{
-        SGD.onTouchEvent(event)
-        return true
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         //inflate layout
@@ -117,9 +99,10 @@ public class questionsFrag : Fragment(){
 
         //this is for the pinch functionality
         matrix = Matrix()
+        matrix.postScale(1F,1F)
+        SGD = MyOnScaleGestureListener(questionImage,matrix)
+        
         mContext != this.context
-        q2 = v.findViewById(R.id.questionImageView)
-        SGD = ScaleGestureDetector(mContext, ScaleListener())
 
         //start test
         startTest(topicQuestions)
@@ -249,6 +232,7 @@ public class questionsFrag : Fragment(){
             var targetQuestion = list.get(qn)
             var targetImage = Utils.getImage(targetQuestion.Question)
             questionImage.setImageBitmap(targetImage)
+            questionImage.layoutParams.height = 250
 
             a.setText(targetQuestion.answerA)
             b.setText(targetQuestion.answerB)
@@ -262,7 +246,30 @@ public class questionsFrag : Fragment(){
             nextBtn.visibility = INVISIBLE
         }
     }
+    //inner class OnScaleGestureListener____________________________________________________________
+    inner class MyOnScaleGestureListener(targetImage:ImageView, zoomMatrix: Matrix) : ScaleGestureDetector.SimpleOnScaleGestureListener() {
+        var targetImage = targetImage
+        var originalMatrix = targetImage.matrix
+        var zoomMatrix = zoomMatrix
 
+        override fun onScale(detector: ScaleGestureDetector): Boolean {
+            val scaleFactor = detector.scaleFactor
+            if (scaleFactor > 1) {
+                targetImage.setImageMatrix(zoomMatrix)
+            } else {
+                targetImage.setImageMatrix(originalMatrix)
+            }
+            return true
+        }
+
+        override fun onScaleBegin(detector: ScaleGestureDetector): Boolean {
+            return true
+        }
+
+
+        override fun onScaleEnd(detector: ScaleGestureDetector) {
+        }
+    }
 
     //______________________________________________________________________________________________
     //methods not to be touched, don't want to mess with interface methods
