@@ -3,6 +3,7 @@ package com.example.imtia.apcsquiz
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Matrix
 import android.support.v7.app.AppCompatActivity
 import android.graphics.drawable.AnimationDrawable
 import android.net.Uri
@@ -11,10 +12,8 @@ import android.os.Vibrator
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
+import android.view.*
 import android.view.View.*
-import android.view.ViewGroup
 import android.widget.*
 import com.example.imtia.apcsquiz.DBHandlers.DBHelper
 import com.example.imtia.apcsquiz.Main2Activity
@@ -25,9 +24,12 @@ import org.w3c.dom.Text
 
 import java.util.*
 import kotlin.collections.ArrayList
+import com.example.imtia.apcsquiz.R.id.imageView
 
 
-class questionsFrag : Fragment(){
+
+
+public class questionsFrag : Fragment(){
     //widgets
     private val TAG = "questionFrag"
     lateinit var a: TextView
@@ -42,7 +44,6 @@ class questionsFrag : Fragment(){
     lateinit var  divider: View
     lateinit var questionTitle: TextView
 
-    var mContext = this.activity
 
     //arrays of buttons and questions
     var ar:ArrayList<TextView> = ArrayList<TextView>()
@@ -63,6 +64,11 @@ class questionsFrag : Fragment(){
     var numberOfQuestions = 0
     var perCorrect:Double = 0.0
 
+
+    lateinit var SGD: MyOnScaleGestureListener
+    lateinit var matrix:Matrix
+    lateinit var mContext:Context
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -77,6 +83,7 @@ class questionsFrag : Fragment(){
         //implement widgetes
         initButtons(v)
 
+
         //retrieve topic
         val args : Bundle ?= arguments
         topic = args?.getString("TOPIC")
@@ -84,10 +91,18 @@ class questionsFrag : Fragment(){
 
         //create database
         dbHelper = DBHelper(v.context)
+
         //get list of all questions from db
         masterList = dbHelper.getAllQuestions()
         topicQuestions = getQuestions(masterList, topic)
         numberOfQuestions = topicQuestions.size
+
+        //this is for the pinch functionality
+        matrix = Matrix()
+        matrix.postScale(1F,1F)
+        SGD = MyOnScaleGestureListener(questionImage,matrix)
+        
+        mContext != this.context
 
         //start test
         startTest(topicQuestions)
@@ -217,6 +232,7 @@ class questionsFrag : Fragment(){
             var targetQuestion = list.get(qn)
             var targetImage = Utils.getImage(targetQuestion.Question)
             questionImage.setImageBitmap(targetImage)
+            questionImage.layoutParams.height = 250
 
             a.setText(targetQuestion.answerA)
             b.setText(targetQuestion.answerB)
@@ -230,7 +246,30 @@ class questionsFrag : Fragment(){
             nextBtn.visibility = INVISIBLE
         }
     }
+    //inner class OnScaleGestureListener____________________________________________________________
+    inner class MyOnScaleGestureListener(targetImage:ImageView, zoomMatrix: Matrix) : ScaleGestureDetector.SimpleOnScaleGestureListener() {
+        var targetImage = targetImage
+        var originalMatrix = targetImage.matrix
+        var zoomMatrix = zoomMatrix
 
+        override fun onScale(detector: ScaleGestureDetector): Boolean {
+            val scaleFactor = detector.scaleFactor
+            if (scaleFactor > 1) {
+                targetImage.setImageMatrix(zoomMatrix)
+            } else {
+                targetImage.setImageMatrix(originalMatrix)
+            }
+            return true
+        }
+
+        override fun onScaleBegin(detector: ScaleGestureDetector): Boolean {
+            return true
+        }
+
+
+        override fun onScaleEnd(detector: ScaleGestureDetector) {
+        }
+    }
 
     //______________________________________________________________________________________________
     //methods not to be touched, don't want to mess with interface methods
